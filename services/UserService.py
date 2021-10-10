@@ -2,7 +2,7 @@ import logging
 
 from flask import jsonify
 from entities.models import User
-
+from entities.models import Pet
 
 class UserService:
 
@@ -58,3 +58,8 @@ class UserService:
     def list():
         users = User.query.all()
         return jsonify(success=True, users=[user.serialize for user in users])
+
+    @staticmethod
+    def get_user_pets(user_id):
+        pets = Pet.query.select_from(User).join(User.pets).filter(User.id == user_id)
+        return jsonify(success=True, pets=[pet.serialize for pet in pets])

@@ -2,6 +2,7 @@ import logging
 
 from flask import jsonify
 from entities.models import Pet
+from entities.models import User
 
 
 class PetService:

@@ -23,3 +23,7 @@ def delete(user_id):
 
 def list_users():
     return service.list()
+
+
+def list_user_pets(user_id):
+    return service.get_user_pets(user_id)

@@ -44,6 +44,7 @@ class Pet(db.Model):
     age = db.Column(db.String)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    owner = db.relationship("User", viewonly=True)
 
     def create(self):
         db.session.add(self)
@@ -63,5 +64,6 @@ class Pet(db.Model):
             'id': self.id,
             'name': self.name,
             'type': self.type,
-            'age': self.age
+            'age': self.age,
+            'owner': self.owner.serialize
         }
